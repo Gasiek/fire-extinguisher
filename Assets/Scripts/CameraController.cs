@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform VRHeadset;
     private Camera camera;
     private Vector3 posOffset;
+    private Vector3 VRHeadsetOffset;
     private bool VRHeadsetPosChanged = false;
     private bool settingUp = true;
     private Vector3 initialVRHeadsetPos;
+    private Vector3 goodInitialVRHeadsetPos;
     public bool VRMode { get; private set; } = false;
     private XRIDefaultInputActions inputActions;
     private XRDeviceSimulatorControls simulatorControls;
@@ -50,6 +50,9 @@ public class CameraController : MonoBehaviour
                 Debug.Log("VRHeadsetPosChanged");
                 VRHeadsetPosChanged = true;
                 posOffset = transform.position - VRHeadset.position;
+                goodInitialVRHeadsetPos = VRHeadset.position;
+                if (goodInitialVRHeadsetPos.y < 1.5f) goodInitialVRHeadsetPos.y = 1.5f;
+                Debug.Log(posOffset);
             }
             else if (VRHeadsetPosChanged)
             {
@@ -58,11 +61,12 @@ public class CameraController : MonoBehaviour
                     Debug.Log("Setting up");
                     transform.position = VRHeadset.position + posOffset;
                     transform.rotation = VRHeadset.rotation;
+                    VRHeadsetOffset = VRHeadset.position;
                 }
                 else
                 {
                     Debug.Log("Not setting up");
-                    transform.position = new Vector3(-VRHeadset.position.x, VRHeadset.position.y, -VRHeadset.position.z) + posOffset;
+                    transform.position = new Vector3(posOffset.x - VRHeadset.position.x + 2 * VRHeadsetOffset.x, goodInitialVRHeadsetPos.y, posOffset.z - VRHeadset.position.z);
                     transform.eulerAngles = new Vector3(VRHeadset.eulerAngles.x, VRHeadset.eulerAngles.y + 180, VRHeadset.eulerAngles.z);
                 }
             }
