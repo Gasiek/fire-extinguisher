@@ -34,7 +34,7 @@ public class FireController : MonoBehaviour
     timeLastWatered = Time.time;
     currentIntensity -= amount;
     ChangeIntensity();
-    isLit = (currentIntensity <= 0);
+    isLit = currentIntensity <= 0;
     return isLit;
   }
 
@@ -64,10 +64,5 @@ public class FireController : MonoBehaviour
     {
       fireParticleSystems[i].Stop();
     }
-  }
-
-  public bool IsLit()
-  {
-    return isLit;
   }
 }
