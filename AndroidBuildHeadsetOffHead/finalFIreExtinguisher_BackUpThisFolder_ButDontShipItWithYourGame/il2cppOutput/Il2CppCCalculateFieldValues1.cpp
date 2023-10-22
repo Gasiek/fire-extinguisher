@@ -952,6 +952,8 @@ struct DisplayU5BU5D_tAD77D7EE2B839E3EDA0D1C0028B64F867F400C7F;
 struct ExecuteInEditModeU5BU5D_t57196F1483600AD3B95D1452158E1E10864B12A2;
 // Unity.IO.LowLevel.Unsafe.FileReadType[]
 struct FileReadTypeU5BU5D_t746DE731BB9F92898AC1C857338FB0C0BDCC32F8;
+// FireController[]
+struct FireControllerU5BU5D_tE87414310ACA6B5D04048718C8285114A91E90FB;
 // UnityEngine.TextCore.Text.FontWeightPair[]
 struct FontWeightPairU5BU5D_t76E8DB55C81EEBEFA2E6D1D3E3B3EA1FB4C4954F;
 // UnityEngine.GUIContent[]
@@ -1178,6 +1180,8 @@ struct ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF;
 struct Byte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3;
 // UnityEngine.Camera
 struct Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184;
+// CameraController
+struct CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5;
 // UnityEngine.Canvas
 struct Canvas_t2DB4CEFDFF732884866C83F11ABF75F5AE8FFB26;
 // UnityEngine.CanvasRenderer
@@ -1340,8 +1344,6 @@ struct FilmGrain_t87D5F559E2E345EE7BD347456D99BC8E232A5172;
 struct FilmGrainLookupParameter_tDF3F944D7FECD6E33C773117CA937AE2420F4C6F;
 // UnityEngine.Rendering.Universal.Internal.FinalBlitPass
 struct FinalBlitPass_t5A422DA2B38F1886E0F5AC3D26CE2455177C3EAC;
-// FireController
-struct FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB;
 // UnityEngine.Rendering.FloatParameter
 struct FloatParameter_t566B623CD21B2F957A20BA790ACEF6684A712106;
 // UnityEngine.Font
@@ -6887,17 +6889,6 @@ struct ShaderConstants_t39DF791BC3E467E90A77105ED9D45F2CB8E33D00_StaticFields
 	int32_t ____FsrEasuConstants3_3;
 	// System.Int32 UnityEngine.Rendering.FSRUtils/ShaderConstants::_FsrRcasConstants
 	int32_t ____FsrRcasConstants_4;
-};
-
-// FireController/<StopCoroutine>d__12
-struct U3CStopCoroutineU3Ed__12_t1118A77CE67D933078D34170D89ED95D4B702085  : public RuntimeObject
-{
-	// System.Int32 FireController/<StopCoroutine>d__12::<>1__state
-	int32_t ___U3CU3E1__state_0;
-	// System.Object FireController/<StopCoroutine>d__12::<>2__current
-	RuntimeObject* ___U3CU3E2__current_1;
-	// FireController FireController/<StopCoroutine>d__12::<>4__this
-	FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB* ___U3CU3E4__this_2;
 };
 
 // UnityEngine.TextCore.Text.FontAsset/<>c
@@ -32548,26 +32539,22 @@ struct CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5  : public Mono
 {
 	// UnityEngine.Transform CameraController::VRHeadset
 	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___VRHeadset_4;
-	// UnityEngine.Camera CameraController::camera
-	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___camera_5;
+	// UnityEngine.Camera CameraController::noHeadsetCamera
+	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___noHeadsetCamera_5;
+	// UnityEngine.Transform CameraController::noHeadsetCameraInitialPosition
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___noHeadsetCameraInitialPosition_6;
 	// UnityEngine.Vector3 CameraController::posOffset
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___posOffset_6;
-	// UnityEngine.Vector3 CameraController::VRHeadsetOffset
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___VRHeadsetOffset_7;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___posOffset_7;
 	// System.Boolean CameraController::VRHeadsetPosChanged
 	bool ___VRHeadsetPosChanged_8;
-	// System.Boolean CameraController::settingUp
-	bool ___settingUp_9;
 	// UnityEngine.Vector3 CameraController::initialVRHeadsetPos
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___initialVRHeadsetPos_10;
-	// UnityEngine.Vector3 CameraController::goodInitialVRHeadsetPos
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___goodInitialVRHeadsetPos_11;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___initialVRHeadsetPos_9;
 	// System.Boolean CameraController::<VRMode>k__BackingField
-	bool ___U3CVRModeU3Ek__BackingField_12;
+	bool ___U3CVRModeU3Ek__BackingField_10;
 	// XRIDefaultInputActions CameraController::inputActions
-	XRIDefaultInputActions_tB0650184BC0E27ADBD6489E3FD827076137D8D80* ___inputActions_13;
+	XRIDefaultInputActions_tB0650184BC0E27ADBD6489E3FD827076137D8D80* ___inputActions_11;
 	// XRDeviceSimulatorControls CameraController::simulatorControls
-	XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33* ___simulatorControls_14;
+	XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33* ___simulatorControls_12;
 };
 
 // UnityEngine.Rendering.CameraSwitcher
@@ -32819,6 +32806,25 @@ struct FreeCamera_t2904FFED3AE2A0BFC5BB3A978B57A3A5A4DD1571  : public MonoBehavi
 	bool ___leftShift_21;
 	// System.Boolean UnityEngine.Rendering.FreeCamera::fire1
 	bool ___fire1_22;
+};
+
+// GameManager
+struct GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// CameraController GameManager::cameraController
+	CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5* ___cameraController_4;
+	// UnityEngine.GameObject GameManager::fireExtinguisher
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___fireExtinguisher_5;
+	// UnityEngine.Transform GameManager::fireExtinguisherSpawnPoint
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___fireExtinguisherSpawnPoint_6;
+	// FireController[] GameManager::fireControllers
+	FireControllerU5BU5D_tE87414310ACA6B5D04048718C8285114A91E90FB* ___fireControllers_7;
+	// UnityEngine.GameObject GameManager::activeFireExtinguisher
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___activeFireExtinguisher_8;
+	// XRIDefaultInputActions GameManager::inputActions
+	XRIDefaultInputActions_tB0650184BC0E27ADBD6489E3FD827076137D8D80* ___inputActions_9;
+	// XRDeviceSimulatorControls GameManager::simulatorControls
+	XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33* ___simulatorControls_10;
 };
 
 // UnityEngine.XR.OpenXR.Features.Interactions.HTCViveControllerProfile
@@ -40202,18 +40208,18 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4876[1] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4879[39] = 
 {
 	static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___U3CassetU3Ek__BackingField_0)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_1)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_MainActionsCallbackInterface_2)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_KeyboardXTranslate_3)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_KeyboardZTranslate_4)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_KeyboardYTranslate_5)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ManipulateLeftHand_6)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ManipulateRightHand_7)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ToggleManipulateLeftHand_8)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ToggleManipulateRightHand_9)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ManipulateHead_10)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_MouseDelta_11)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_MouseScroll_12)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_RotateModeOverride_13)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ToggleMouseTransformationMode_14)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_NegateMode_15)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ZConstraint_16)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_XConstraint_17)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_YConstraint_18)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_Reset_19)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_Main_ToggleCursorLock_20)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_21)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControlsActionsCallbackInterface_22)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Axis2D_23)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_RestingHandAxis2D_24)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_ToggleDevicePositionTarget_25)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_TogglePrimary2DAxisTarget_26)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_ToggleSecondary2DAxisTarget_27)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Grip_28)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Trigger_29)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_PrimaryButton_30)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_SecondaryButton_31)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Menu_32)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Primary2DAxisClick_33)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Secondary2DAxisClick_34)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Primary2DAxisTouch_35)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_Secondary2DAxisTouch_36)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_PrimaryTouch_37)),static_cast<int32_t>(offsetof(XRDeviceSimulatorControls_t5EDBB790409A78A9FBC65DFF09CCCF8B30CEAD33, ___m_InputControls_SecondaryTouch_38)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4880[11] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4880[9] = 
 {
-	static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___VRHeadset_4)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___camera_5)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___posOffset_6)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___VRHeadsetOffset_7)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___VRHeadsetPosChanged_8)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___settingUp_9)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___initialVRHeadsetPos_10)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___goodInitialVRHeadsetPos_11)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___U3CVRModeU3Ek__BackingField_12)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___inputActions_13)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___simulatorControls_14)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4881[3] = 
-{
-	static_cast<int32_t>(offsetof(U3CStopCoroutineU3Ed__12_t1118A77CE67D933078D34170D89ED95D4B702085, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CStopCoroutineU3Ed__12_t1118A77CE67D933078D34170D89ED95D4B702085, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CStopCoroutineU3Ed__12_t1118A77CE67D933078D34170D89ED95D4B702085, ___U3CU3E4__this_2)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4882[7] = 
+	static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___VRHeadset_4)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___noHeadsetCamera_5)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___noHeadsetCameraInitialPosition_6)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___posOffset_7)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___VRHeadsetPosChanged_8)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___initialVRHeadsetPos_9)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___U3CVRModeU3Ek__BackingField_10)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___inputActions_11)),static_cast<int32_t>(offsetof(CameraController_tDC4FF0FA10418272A26E5E7539156F4F4A98E8C5, ___simulatorControls_12)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4881[7] = 
 {
 	static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___fireParticleSystems_4)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___startIntensities_5)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___currentIntensity_6)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___timeLastWatered_7)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___regenerationDelay_8)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___regenerationRate_9)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___isLit_10)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4883[3] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4882[3] = 
 {
 	static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___ps_4)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___amountExtinguishedPerSecond_5)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___riffle_6)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4883[7] = 
+{
+	static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___cameraController_4)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireExtinguisher_5)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireExtinguisherSpawnPoint_6)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireControllers_7)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___activeFireExtinguisher_8)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___inputActions_9)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___simulatorControls_10)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4884[1] = 
 {
 	static_cast<int32_t>(offsetof(PlayerController_t7E8D7042FA2D0DFEC54A1FCDF395161D88DAAE95, ___speed_4)),};

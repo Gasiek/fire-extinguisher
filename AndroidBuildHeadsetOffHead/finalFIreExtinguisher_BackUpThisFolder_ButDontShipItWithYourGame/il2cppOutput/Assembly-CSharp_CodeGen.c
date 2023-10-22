@@ -468,53 +468,49 @@ extern void CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71 (vo
 extern void CameraController_OnEnable_m9C112D26D50B3501D1258F002AC3BE99FBC6D573 (void);
 // 0x00000108 System.Void CameraController::Update()
 extern void CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6 (void);
-// 0x00000109 System.Void CameraController::FinishSettingUpVRHeadset(UnityEngine.InputSystem.InputAction/CallbackContext)
-extern void CameraController_FinishSettingUpVRHeadset_m05973DFB1C86122CD3AAEDAE5308F3CBB4629FB2 (void);
-// 0x0000010A System.Void CameraController::TurnOnVRMode(UnityEngine.InputSystem.InputAction/CallbackContext)
-extern void CameraController_TurnOnVRMode_m2B034682797FD4A45E4A2801F747886B3DAE3919 (void);
-// 0x0000010B System.Void CameraController::.ctor()
+// 0x00000109 System.Void CameraController::TurnOffVRMode(UnityEngine.InputSystem.InputAction/CallbackContext)
+extern void CameraController_TurnOffVRMode_m9F4A9861D4A2B0681BF70709259B57CAC2243AF9 (void);
+// 0x0000010A System.Void CameraController::.ctor()
 extern void CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950 (void);
-// 0x0000010C System.Void FireController::Start()
+// 0x0000010B System.Void FireController::Start()
 extern void FireController_Start_mD89B3101F9DEDBB9AA4D25E4999E41B7F271F889 (void);
-// 0x0000010D System.Void FireController::Update()
+// 0x0000010C System.Void FireController::Update()
 extern void FireController_Update_m98564B83BB86DBB5CB7D6BD0D4931C3BA9517ECB (void);
-// 0x0000010E System.Boolean FireController::TryExtinguish(System.Single)
-extern void FireController_TryExtinguish_m9F360EEE7FDF14743FAA3D49AECD1AE515B08DCB (void);
-// 0x0000010F System.Void FireController::ChangeIntensity()
+// 0x0000010D System.Void FireController::TryExtinguish(System.Single)
+extern void FireController_TryExtinguish_m17C038A2CE04975DDB8E16353CA4E3E00A3E792C (void);
+// 0x0000010E System.Void FireController::ChangeIntensity()
 extern void FireController_ChangeIntensity_m384F520FEFBB8283D644C4F66E6F52042643DB0B (void);
-// 0x00000110 System.Void FireController::Stop()
-extern void FireController_Stop_mFFFD2137EF8299FF7E17549AE602D8755EB219C3 (void);
-// 0x00000111 System.Collections.IEnumerator FireController::StopCoroutine()
-extern void FireController_StopCoroutine_mF94FA0FE8FF96CD7BFA2343501625E412F493404 (void);
-// 0x00000112 System.Void FireController::StopFire()
+// 0x0000010F System.Void FireController::StopFire()
 extern void FireController_StopFire_mC8AE409E67F9A83AAB8C51E5A4E4D1A18F676ECB (void);
-// 0x00000113 System.Void FireController::.ctor()
+// 0x00000110 System.Void FireController::Restart()
+extern void FireController_Restart_mFC83C8EC5E7DCA09EA8715AAB4B84D6FD18A618B (void);
+// 0x00000111 System.Void FireController::.ctor()
 extern void FireController__ctor_m2B7ACCBF2BA16D883AA78BBDCC56125BBF4D2D41 (void);
-// 0x00000114 System.Void FireController/<StopCoroutine>d__12::.ctor(System.Int32)
-extern void U3CStopCoroutineU3Ed__12__ctor_m2ABA3830C991418BDC889BEE5ECC494FD92F4854 (void);
-// 0x00000115 System.Void FireController/<StopCoroutine>d__12::System.IDisposable.Dispose()
-extern void U3CStopCoroutineU3Ed__12_System_IDisposable_Dispose_m02D8E00BD1366541EAE0057F2AFEC76DDCEB87AC (void);
-// 0x00000116 System.Boolean FireController/<StopCoroutine>d__12::MoveNext()
-extern void U3CStopCoroutineU3Ed__12_MoveNext_m72DA90302ACA9E79FF27F717C956B592446A0664 (void);
-// 0x00000117 System.Object FireController/<StopCoroutine>d__12::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
-extern void U3CStopCoroutineU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m44C226A8E37BD6D5E7791A554793886D12178567 (void);
-// 0x00000118 System.Void FireController/<StopCoroutine>d__12::System.Collections.IEnumerator.Reset()
-extern void U3CStopCoroutineU3Ed__12_System_Collections_IEnumerator_Reset_m3FD191813F410BF8FD4D4E7B9D5EE3FD6F87D508 (void);
-// 0x00000119 System.Object FireController/<StopCoroutine>d__12::System.Collections.IEnumerator.get_Current()
-extern void U3CStopCoroutineU3Ed__12_System_Collections_IEnumerator_get_Current_mDFCD7B03D283038212C6260AFCABD16B817E6CC0 (void);
-// 0x0000011A System.Void fireExtinguisherController::Fire()
+// 0x00000112 System.Void fireExtinguisherController::Fire()
 extern void fireExtinguisherController_Fire_m9A7B8E7C97028CEFD707017DA245F4C603B148DD (void);
-// 0x0000011B System.Void fireExtinguisherController::Stop()
+// 0x00000113 System.Void fireExtinguisherController::Stop()
 extern void fireExtinguisherController_Stop_m12326965861F064571672B59A8BB111C15350905 (void);
-// 0x0000011C System.Void fireExtinguisherController::Update()
+// 0x00000114 System.Void fireExtinguisherController::Update()
 extern void fireExtinguisherController_Update_mF7B76F9E555658825D330D9CBD994AC880761967 (void);
-// 0x0000011D System.Void fireExtinguisherController::.ctor()
+// 0x00000115 System.Void fireExtinguisherController::.ctor()
 extern void fireExtinguisherController__ctor_m2B3F4BCA97244432C678025FCD87FBAB313F53A3 (void);
-// 0x0000011E System.Void PlayerController::Update()
+// 0x00000116 System.Void GameManager::Awake()
+extern void GameManager_Awake_m4B6E8E2AF58C95C9A2A0C4637A34AE0892CB637F (void);
+// 0x00000117 System.Void GameManager::OnEnable()
+extern void GameManager_OnEnable_mCBA3C942196F2FE284CA416B26833E78468F635E (void);
+// 0x00000118 System.Void GameManager::RestartGame(UnityEngine.InputSystem.InputAction/CallbackContext)
+extern void GameManager_RestartGame_m91811FBFBAE17A4C0A1A579C7FFB724C001875CA (void);
+// 0x00000119 System.Void GameManager::SpawnFireExtinguisher()
+extern void GameManager_SpawnFireExtinguisher_m0765177F1971F247575CC7A7D1D245FE175893CC (void);
+// 0x0000011A System.Void GameManager::RestartFire()
+extern void GameManager_RestartFire_m69C4D1E60A4BEBC26471D77A32B940F19D682A5F (void);
+// 0x0000011B System.Void GameManager::.ctor()
+extern void GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368 (void);
+// 0x0000011C System.Void PlayerController::Update()
 extern void PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33 (void);
-// 0x0000011F System.Void PlayerController::.ctor()
+// 0x0000011D System.Void PlayerController::.ctor()
 extern void PlayerController__ctor_mDDAB7C7D82E1A5B3E6C197B1AB9D653DFE554F33 (void);
-static Il2CppMethodPointer s_methodPointers[287] = 
+static Il2CppMethodPointer s_methodPointers[285] = 
 {
 	DoorHandle_OpenDoor_mCFE30721E1643FCEEA188E44CB738555F1AC1646,
 	DoorHandle__ctor_m44B23AA47B757820B0B4F5D90FFF03FD084F7DAA,
@@ -780,27 +776,25 @@ static Il2CppMethodPointer s_methodPointers[287] =
 	CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71,
 	CameraController_OnEnable_m9C112D26D50B3501D1258F002AC3BE99FBC6D573,
 	CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6,
-	CameraController_FinishSettingUpVRHeadset_m05973DFB1C86122CD3AAEDAE5308F3CBB4629FB2,
-	CameraController_TurnOnVRMode_m2B034682797FD4A45E4A2801F747886B3DAE3919,
+	CameraController_TurnOffVRMode_m9F4A9861D4A2B0681BF70709259B57CAC2243AF9,
 	CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950,
 	FireController_Start_mD89B3101F9DEDBB9AA4D25E4999E41B7F271F889,
 	FireController_Update_m98564B83BB86DBB5CB7D6BD0D4931C3BA9517ECB,
-	FireController_TryExtinguish_m9F360EEE7FDF14743FAA3D49AECD1AE515B08DCB,
+	FireController_TryExtinguish_m17C038A2CE04975DDB8E16353CA4E3E00A3E792C,
 	FireController_ChangeIntensity_m384F520FEFBB8283D644C4F66E6F52042643DB0B,
-	FireController_Stop_mFFFD2137EF8299FF7E17549AE602D8755EB219C3,
-	FireController_StopCoroutine_mF94FA0FE8FF96CD7BFA2343501625E412F493404,
 	FireController_StopFire_mC8AE409E67F9A83AAB8C51E5A4E4D1A18F676ECB,
+	FireController_Restart_mFC83C8EC5E7DCA09EA8715AAB4B84D6FD18A618B,
 	FireController__ctor_m2B7ACCBF2BA16D883AA78BBDCC56125BBF4D2D41,
-	U3CStopCoroutineU3Ed__12__ctor_m2ABA3830C991418BDC889BEE5ECC494FD92F4854,
-	U3CStopCoroutineU3Ed__12_System_IDisposable_Dispose_m02D8E00BD1366541EAE0057F2AFEC76DDCEB87AC,
-	U3CStopCoroutineU3Ed__12_MoveNext_m72DA90302ACA9E79FF27F717C956B592446A0664,
-	U3CStopCoroutineU3Ed__12_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m44C226A8E37BD6D5E7791A554793886D12178567,
-	U3CStopCoroutineU3Ed__12_System_Collections_IEnumerator_Reset_m3FD191813F410BF8FD4D4E7B9D5EE3FD6F87D508,
-	U3CStopCoroutineU3Ed__12_System_Collections_IEnumerator_get_Current_mDFCD7B03D283038212C6260AFCABD16B817E6CC0,
 	fireExtinguisherController_Fire_m9A7B8E7C97028CEFD707017DA245F4C603B148DD,
 	fireExtinguisherController_Stop_m12326965861F064571672B59A8BB111C15350905,
 	fireExtinguisherController_Update_mF7B76F9E555658825D330D9CBD994AC880761967,
 	fireExtinguisherController__ctor_m2B3F4BCA97244432C678025FCD87FBAB313F53A3,
+	GameManager_Awake_m4B6E8E2AF58C95C9A2A0C4637A34AE0892CB637F,
+	GameManager_OnEnable_mCBA3C942196F2FE284CA416B26833E78468F635E,
+	GameManager_RestartGame_m91811FBFBAE17A4C0A1A579C7FFB724C001875CA,
+	GameManager_SpawnFireExtinguisher_m0765177F1971F247575CC7A7D1D245FE175893CC,
+	GameManager_RestartFire_m69C4D1E60A4BEBC26471D77A32B940F19D682A5F,
+	GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368,
 	PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33,
 	PlayerController__ctor_mDDAB7C7D82E1A5B3E6C197B1AB9D653DFE554F33,
 };
@@ -1059,7 +1053,7 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[126] =
 	{ 0x060000DE, InputControlsActions_get_enabled_m3B5490EF98EA864E8DE5219456ED1E3316F9809A_AdjustorThunk },
 	{ 0x060000E0, InputControlsActions_SetCallbacks_mC7DAF015814385C704857FB5E3387198C493CC53_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[287] = 
+static const int32_t s_InvokerIndices[285] = 
 {
 	6513,
 	6513,
@@ -1326,23 +1320,21 @@ static const int32_t s_InvokerIndices[287] =
 	6513,
 	6513,
 	5347,
+	6513,
+	6513,
+	6513,
+	5185,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
+	6513,
 	5347,
-	6513,
-	6513,
-	6513,
-	3673,
-	6513,
-	6513,
-	6393,
-	6513,
-	6513,
-	5101,
-	6513,
-	6293,
-	6393,
-	6513,
-	6393,
-	6513,
 	6513,
 	6513,
 	6513,
@@ -1353,7 +1345,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	287,
+	285,
 	s_methodPointers,
 	126,
 	s_adjustorThunks,

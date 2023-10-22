@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public CameraController cameraController;
     [SerializeField] private GameObject fireExtinguisher;
     [SerializeField] private Transform fireExtinguisherSpawnPoint;
     [SerializeField] private FireController[] fireControllers;
@@ -22,21 +23,26 @@ public class GameManager : MonoBehaviour
     {
         simulatorControls.InputControls.Enable();
         inputActions.XRILeftHandInteraction.Enable();
-        inputActions.XRILeftHandInteraction.XButtonPress.performed += SpawnFireExtinguisher;
-        simulatorControls.InputControls.PrimaryButton.performed += SpawnFireExtinguisher;
+        inputActions.XRILeftHandInteraction.XButtonPress.performed += RestartGame;
+        simulatorControls.InputControls.PrimaryButton.performed += RestartGame;
     }
 
-    private void SpawnFireExtinguisher(InputAction.CallbackContext context)
+    private void RestartGame(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (activeFireExtinguisher != null)
-            {
-                Destroy(activeFireExtinguisher);
-            }
-            activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
+            SpawnFireExtinguisher();
             RestartFire();
         }
+    }
+
+    private void SpawnFireExtinguisher()
+    {
+        if (activeFireExtinguisher != null)
+        {
+            Destroy(activeFireExtinguisher);
+        }
+        activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
     }
 
     private void RestartFire()

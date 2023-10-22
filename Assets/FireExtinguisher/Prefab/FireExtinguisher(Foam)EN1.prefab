@@ -238,7 +238,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.5, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1005869756173304
 GameObject:
@@ -1594,7 +1594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1816325808}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2332,7 +2333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640505855093080}
-  m_LocalRotation: {x: -0, y: -0.9998686, z: -0, w: 0.016214779}
+  m_LocalRotation: {x: 0, y: -0.9998686, z: 0, w: 0.016213477}
   m_LocalPosition: {x: -0.927, y: 0, z: 0.267}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
@@ -2359,7 +2360,7 @@ Transform:
   - {fileID: 1799689830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -178.142, z: 0}
 --- !u!1 &1651179968206984
 GameObject:
   m_ObjectHideFlags: 0

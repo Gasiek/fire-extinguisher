@@ -275,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18d1eeb00b6cb64a8461e528b2255ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 424794074}
   fireExtinguisher: {fileID: 1640505855093080, guid: 30bb0eee995b0ed4cb200bb5028aea7e,
     type: 3}
   fireExtinguisherSpawnPoint: {fileID: 6896817567900022616}
@@ -727,6 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRHeadset: {fileID: 5315012200071128930}
+  noHeadsetCameraInitialPosition: {fileID: 1091023497}
 --- !u!114 &443157330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4447625567574259063, guid: e20b1d8add05ddc44bd002f0b657f89f,
@@ -1335,7 +1337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091023497}
   m_Layer: 0
-  m_Name: NoHeadsetCameraPosition
+  m_Name: NoHeadsetCameraTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1374,6 +1376,34 @@ PrefabInstance:
     - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.267
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.016214779
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9998686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4489555466364748, guid: 30bb0eee995b0ed4cb200bb5028aea7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1506,6 +1536,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Locomotion System
       objectReference: {fileID: 0}
+    - target: {fileID: 5089388605870231304, guid: d0b01b9b2babff34f9865cb8a9f8929f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5089388605870231308, guid: d0b01b9b2babff34f9865cb8a9f8929f,
         type: 3}
       propertyPath: m_RootOrder
@@ -1560,6 +1595,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089388605870231310, guid: d0b01b9b2babff34f9865cb8a9f8929f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089388605870231311, guid: d0b01b9b2babff34f9865cb8a9f8929f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b01b9b2babff34f9865cb8a9f8929f, type: 3}
@@ -3369,12 +3414,12 @@ MonoBehaviour:
   m_RaycastMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RaycastTriggerInteraction: 1
+  m_RaycastTriggerInteraction: 2
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
-  m_AllowAnchorControl: 1
+  m_AllowAnchorControl: 0
   m_UseForceGrab: 1
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
@@ -3650,12 +3695,12 @@ MonoBehaviour:
   m_RaycastMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RaycastTriggerInteraction: 1
+  m_RaycastTriggerInteraction: 2
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
-  m_AllowAnchorControl: 1
+  m_AllowAnchorControl: 0
   m_UseForceGrab: 1
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
@@ -3845,7 +3890,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5315012201416935088}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 

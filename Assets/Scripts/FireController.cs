@@ -22,10 +22,6 @@ public class FireController : MonoBehaviour
 
   private void Update()
   {
-    if (gameObject.name == "Fire_2")
-    {
-      Debug.Log(gameObject.name + " " + isLit + " " + currentIntensity + " " + timeLastWatered + " " + regenerationDelay);
-    }
     if (isLit && currentIntensity < 1.0f && Time.time - timeLastWatered >= regenerationDelay)
     {
       currentIntensity += regenerationRate * Time.deltaTime;
