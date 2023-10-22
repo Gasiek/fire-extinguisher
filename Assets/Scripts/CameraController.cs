@@ -6,14 +6,13 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform VRHeadset;
-    private Camera camera;
+    private Camera noHeadsetCamera;
+    private Vector3 noHeadsetCameraInitialPosition;
     private Vector3 posOffset;
     private Vector3 VRHeadsetOffset;
     private bool VRHeadsetPosChanged = false;
-    private bool settingUp = true;
     private Vector3 initialVRHeadsetPos;
-    private Vector3 goodInitialVRHeadsetPos;
-    public bool VRMode { get; private set; } = false;
+    public bool VRMode { get; private set; } = true;
     private XRIDefaultInputActions inputActions;
     private XRDeviceSimulatorControls simulatorControls;
 
@@ -25,8 +24,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(VRHeadset.position);
-        camera = GetComponent<Camera>();
+        noHeadsetCamera = GetComponent<Camera>();
         initialVRHeadsetPos = VRHeadset.position;
     }
 
@@ -35,10 +33,8 @@ public class CameraController : MonoBehaviour
         Debug.Log("OnEnable");
         simulatorControls.InputControls.Enable();
         inputActions.XRILeftHandInteraction.Enable();
-        inputActions.XRILeftHandInteraction.XButtonPress.performed += TurnOnVRMode;
-        inputActions.XRILeftHandInteraction.YButtonPress.performed += FinishSettingUpVRHeadset;
-        simulatorControls.InputControls.PrimaryButton.performed += TurnOnVRMode;
-        simulatorControls.InputControls.SecondaryButton.performed += FinishSettingUpVRHeadset;
+        inputActions.XRILeftHandInteraction.YButtonPress.performed += TurnOffVRMode;
+        simulatorControls.InputControls.SecondaryButton.performed += TurnOffVRMode;
     }
 
     void Update()
@@ -49,48 +45,27 @@ public class CameraController : MonoBehaviour
             {
                 Debug.Log("VRHeadsetPosChanged");
                 VRHeadsetPosChanged = true;
-                posOffset = transform.position - VRHeadset.position;
-                goodInitialVRHeadsetPos = VRHeadset.position;
-                if (goodInitialVRHeadsetPos.y < 1.5f) goodInitialVRHeadsetPos.y = 1.5f;
-                Debug.Log(posOffset);
+                posOffset = noHeadsetCameraInitialPosition - VRHeadset.position;
             }
             else if (VRHeadsetPosChanged)
             {
-                if (settingUp)
-                {
-                    Debug.Log("Setting up");
-                    transform.position = VRHeadset.position + posOffset;
-                    transform.rotation = VRHeadset.rotation;
-                    VRHeadsetOffset = VRHeadset.position;
-                }
-                else
                 {
                     Debug.Log("Not setting up");
-                    transform.position = new Vector3(posOffset.x - VRHeadset.position.x + 2 * VRHeadsetOffset.x, goodInitialVRHeadsetPos.y, posOffset.z - VRHeadset.position.z);
+                    transform.position = new Vector3(posOffset.x - VRHeadset.position.x + 2 * VRHeadsetOffset.x, noHeadsetCameraInitialPosition.y, posOffset.z - VRHeadset.position.z);
                     transform.eulerAngles = new Vector3(VRHeadset.eulerAngles.x, VRHeadset.eulerAngles.y + 180, VRHeadset.eulerAngles.z);
                 }
             }
         }
     }
 
-    public void FinishSettingUpVRHeadset(InputAction.CallbackContext context)
+    public void TurnOffVRMode(InputAction.CallbackContext context)
     {
-        Debug.Log("FinishSettingUpVRHeadset");
         if (context.performed)
         {
-            settingUp = false;
-        }
-    }
-
-    public void TurnOnVRMode(InputAction.CallbackContext context)
-    {
-        Debug.Log("TurnOnVRMode");
-        if (context.performed)
-        {
-            VRMode = true;
-            if (camera != null)
+            VRMode = false;
+            if (noHeadsetCamera != null)
             {
-                camera.enabled = false;
+                noHeadsetCamera.enabled = true;
             }
         }
     }

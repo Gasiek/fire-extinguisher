@@ -22,6 +22,10 @@ public class FireController : MonoBehaviour
 
   private void Update()
   {
+    if (gameObject.name == "Fire_2")
+    {
+      Debug.Log(gameObject.name + " " + isLit + " " + currentIntensity + " " + timeLastWatered + " " + regenerationDelay);
+    }
     if (isLit && currentIntensity < 1.0f && Time.time - timeLastWatered >= regenerationDelay)
     {
       currentIntensity += regenerationRate * Time.deltaTime;
@@ -29,13 +33,19 @@ public class FireController : MonoBehaviour
     }
   }
 
-  public bool TryExtinguish(float amount)
+  public void TryExtinguish(float amount)
   {
     timeLastWatered = Time.time;
-    currentIntensity -= amount;
     ChangeIntensity();
-    isLit = currentIntensity <= 0;
-    return isLit;
+    if (currentIntensity >= 0)
+    {
+      currentIntensity -= amount;
+    }
+    if (currentIntensity <= 0)
+    {
+      StopFire();
+      isLit = false;
+    }
   }
 
   private void ChangeIntensity()
@@ -47,22 +57,20 @@ public class FireController : MonoBehaviour
     }
   }
 
-  public void Stop()
-  {
-    StartCoroutine(StopCoroutine());
-  }
-
-  IEnumerator StopCoroutine()
-  {
-    yield return new WaitForSeconds(3);
-    StopFire();
-  }
-
   private void StopFire()
   {
     for (int i = 0; i < fireParticleSystems.Length; i++)
     {
       fireParticleSystems[i].Stop();
     }
+  }
+
+  public void Restart()
+  {
+    for (int i = 0; i < fireParticleSystems.Length; i++)
+    {
+      fireParticleSystems[i].Play();
+    }
+    isLit = true;
   }
 }
