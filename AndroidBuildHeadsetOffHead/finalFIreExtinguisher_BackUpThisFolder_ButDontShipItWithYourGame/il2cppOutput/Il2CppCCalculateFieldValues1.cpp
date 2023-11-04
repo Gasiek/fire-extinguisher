@@ -1344,6 +1344,8 @@ struct FilmGrain_t87D5F559E2E345EE7BD347456D99BC8E232A5172;
 struct FilmGrainLookupParameter_tDF3F944D7FECD6E33C773117CA937AE2420F4C6F;
 // UnityEngine.Rendering.Universal.Internal.FinalBlitPass
 struct FinalBlitPass_t5A422DA2B38F1886E0F5AC3D26CE2455177C3EAC;
+// UnityEngine.FixedJoint
+struct FixedJoint_tA10A077292A86BA2A2AB3542E3441610055F806E;
 // UnityEngine.Rendering.FloatParameter
 struct FloatParameter_t566B623CD21B2F957A20BA790ACEF6684A712106;
 // UnityEngine.Font
@@ -33920,10 +33922,20 @@ struct fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9  : p
 {
 	// UnityEngine.ParticleSystem fireExtinguisherController::ps
 	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___ps_4;
-	// System.Single fireExtinguisherController::amountExtinguishedPerSecond
-	float ___amountExtinguishedPerSecond_5;
 	// UnityEngine.Transform fireExtinguisherController::riffle
-	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___riffle_6;
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___riffle_5;
+	// UnityEngine.Rigidbody fireExtinguisherController::nozzleRigidbody
+	Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* ___nozzleRigidbody_6;
+	// UnityEngine.FixedJoint fireExtinguisherController::nozzleJoint
+	FixedJoint_tA10A077292A86BA2A2AB3542E3441610055F806E* ___nozzleJoint_7;
+	// UnityEngine.Transform fireExtinguisherController::nozzlePositionHolder
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___nozzlePositionHolder_8;
+	// System.Single fireExtinguisherController::amountExtinguishedPerSecond
+	float ___amountExtinguishedPerSecond_9;
+	// UnityEngine.Vector3 fireExtinguisherController::initialNozzleOffset
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___initialNozzleOffset_10;
+	// UnityEngine.Quaternion fireExtinguisherController::initialNozzleRotation
+	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___initialNozzleRotation_11;
 };
 
 // UnityEngine.UI.Dropdown/DropdownItem
@@ -40214,9 +40226,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4880[9] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4881[7] = 
 {
 	static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___fireParticleSystems_4)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___startIntensities_5)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___currentIntensity_6)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___timeLastWatered_7)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___regenerationDelay_8)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___regenerationRate_9)),static_cast<int32_t>(offsetof(FireController_t15F52CED97B7B6AF5627D569D492981F53EFFCDB, ___isLit_10)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4882[3] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4882[8] = 
 {
-	static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___ps_4)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___amountExtinguishedPerSecond_5)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___riffle_6)),};
+	static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___ps_4)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___riffle_5)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___nozzleRigidbody_6)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___nozzleJoint_7)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___nozzlePositionHolder_8)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___amountExtinguishedPerSecond_9)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___initialNozzleOffset_10)),static_cast<int32_t>(offsetof(fireExtinguisherController_t6D631C6FE2BAC2730BCC363AEA0D7F37B364CAB9, ___initialNozzleRotation_11)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4883[7] = 
 {
 	static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___cameraController_4)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireExtinguisher_5)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireExtinguisherSpawnPoint_6)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___fireControllers_7)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___activeFireExtinguisher_8)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___inputActions_9)),static_cast<int32_t>(offsetof(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6, ___simulatorControls_10)),};

@@ -492,25 +492,29 @@ extern void fireExtinguisherController_Fire_m9A7B8E7C97028CEFD707017DA245F4C603B
 extern void fireExtinguisherController_Stop_m12326965861F064571672B59A8BB111C15350905 (void);
 // 0x00000114 System.Void fireExtinguisherController::Update()
 extern void fireExtinguisherController_Update_mF7B76F9E555658825D330D9CBD994AC880761967 (void);
-// 0x00000115 System.Void fireExtinguisherController::.ctor()
+// 0x00000115 System.Void fireExtinguisherController::DetachNozzle()
+extern void fireExtinguisherController_DetachNozzle_m66D7A59CD060B9A9851C901A56D4AFD5B279A81A (void);
+// 0x00000116 System.Void fireExtinguisherController::AttachNozzle(UnityEngine.Rigidbody)
+extern void fireExtinguisherController_AttachNozzle_m28E470E16B6D5A8BD113405D40E97986BCBE6D5E (void);
+// 0x00000117 System.Void fireExtinguisherController::.ctor()
 extern void fireExtinguisherController__ctor_m2B3F4BCA97244432C678025FCD87FBAB313F53A3 (void);
-// 0x00000116 System.Void GameManager::Awake()
+// 0x00000118 System.Void GameManager::Awake()
 extern void GameManager_Awake_m4B6E8E2AF58C95C9A2A0C4637A34AE0892CB637F (void);
-// 0x00000117 System.Void GameManager::OnEnable()
+// 0x00000119 System.Void GameManager::OnEnable()
 extern void GameManager_OnEnable_mCBA3C942196F2FE284CA416B26833E78468F635E (void);
-// 0x00000118 System.Void GameManager::RestartGame(UnityEngine.InputSystem.InputAction/CallbackContext)
+// 0x0000011A System.Void GameManager::RestartGame(UnityEngine.InputSystem.InputAction/CallbackContext)
 extern void GameManager_RestartGame_m91811FBFBAE17A4C0A1A579C7FFB724C001875CA (void);
-// 0x00000119 System.Void GameManager::SpawnFireExtinguisher()
+// 0x0000011B System.Void GameManager::SpawnFireExtinguisher()
 extern void GameManager_SpawnFireExtinguisher_m0765177F1971F247575CC7A7D1D245FE175893CC (void);
-// 0x0000011A System.Void GameManager::RestartFire()
+// 0x0000011C System.Void GameManager::RestartFire()
 extern void GameManager_RestartFire_m69C4D1E60A4BEBC26471D77A32B940F19D682A5F (void);
-// 0x0000011B System.Void GameManager::.ctor()
+// 0x0000011D System.Void GameManager::.ctor()
 extern void GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368 (void);
-// 0x0000011C System.Void PlayerController::Update()
+// 0x0000011E System.Void PlayerController::Update()
 extern void PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33 (void);
-// 0x0000011D System.Void PlayerController::.ctor()
+// 0x0000011F System.Void PlayerController::.ctor()
 extern void PlayerController__ctor_mDDAB7C7D82E1A5B3E6C197B1AB9D653DFE554F33 (void);
-static Il2CppMethodPointer s_methodPointers[285] = 
+static Il2CppMethodPointer s_methodPointers[287] = 
 {
 	DoorHandle_OpenDoor_mCFE30721E1643FCEEA188E44CB738555F1AC1646,
 	DoorHandle__ctor_m44B23AA47B757820B0B4F5D90FFF03FD084F7DAA,
@@ -788,6 +792,8 @@ static Il2CppMethodPointer s_methodPointers[285] =
 	fireExtinguisherController_Fire_m9A7B8E7C97028CEFD707017DA245F4C603B148DD,
 	fireExtinguisherController_Stop_m12326965861F064571672B59A8BB111C15350905,
 	fireExtinguisherController_Update_mF7B76F9E555658825D330D9CBD994AC880761967,
+	fireExtinguisherController_DetachNozzle_m66D7A59CD060B9A9851C901A56D4AFD5B279A81A,
+	fireExtinguisherController_AttachNozzle_m28E470E16B6D5A8BD113405D40E97986BCBE6D5E,
 	fireExtinguisherController__ctor_m2B3F4BCA97244432C678025FCD87FBAB313F53A3,
 	GameManager_Awake_m4B6E8E2AF58C95C9A2A0C4637A34AE0892CB637F,
 	GameManager_OnEnable_mCBA3C942196F2FE284CA416B26833E78468F635E,
@@ -1053,7 +1059,7 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[126] =
 	{ 0x060000DE, InputControlsActions_get_enabled_m3B5490EF98EA864E8DE5219456ED1E3316F9809A_AdjustorThunk },
 	{ 0x060000E0, InputControlsActions_SetCallbacks_mC7DAF015814385C704857FB5E3387198C493CC53_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[285] = 
+static const int32_t s_InvokerIndices[287] = 
 {
 	6513,
 	6513,
@@ -1332,6 +1338,8 @@ static const int32_t s_InvokerIndices[285] =
 	6513,
 	6513,
 	6513,
+	5131,
+	6513,
 	6513,
 	6513,
 	5347,
@@ -1345,7 +1353,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	285,
+	287,
 	s_methodPointers,
 	126,
 	s_adjustorThunks,
