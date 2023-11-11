@@ -9,23 +9,43 @@ public class fireExtinguisherController : MonoBehaviour
   [SerializeField] private Rigidbody nozzleRigidbody;
   [SerializeField] private FixedJoint nozzleJoint;
   [SerializeField] private Transform nozzlePositionHolder;
+  [SerializeField] private AudioSource nozzleAudioSource;
+  [SerializeField] private AudioSource buttonAudioSource;
   private float amountExtinguishedPerSecond = 10f;
   private Vector3 initialNozzleOffset;
   private Quaternion initialNozzleRotation;
+  private float extinguishingTimeLeft = 18;
+  private bool isExtinguishing = false;
 
   public void Fire()
   {
+    buttonAudioSource.Play();
+    if (extinguishingTimeLeft <= 0)
+    {
+      return;
+    }
+    isExtinguishing = true;
+    nozzleAudioSource.Play();
     ps.Play();
   }
 
   public void Stop()
   {
+    isExtinguishing = false;
+    nozzleAudioSource.Stop();
     ps.Stop();
   }
 
   private void Update()
   {
-    Debug.Log(nozzlePositionHolder.position);
+    if (isExtinguishing)
+    {
+      extinguishingTimeLeft -= Time.deltaTime;
+      if (extinguishingTimeLeft <= 0)
+      {
+        Stop();
+      }
+    }
     if (ps.isPlaying && Physics.Raycast(riffle.position, riffle.forward, out RaycastHit hit, 3) && hit.transform.CompareTag("Fire"))
     {
       hit.transform.GetComponent<FireController>().TryExtinguish(0.1f * Time.deltaTime * amountExtinguishedPerSecond);
