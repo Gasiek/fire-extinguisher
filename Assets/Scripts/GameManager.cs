@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public CameraController cameraController;
     [SerializeField] private GameObject fireExtinguisher;
-    [SerializeField] private Transform fireExtinguisherSpawnPoint;
+    [SerializeField] private Transform[] fireExtinguisherSpawnPoints;
     [SerializeField] private FireController[] fireControllers;
     private GameObject activeFireExtinguisher;
     private XRIDefaultInputActions inputActions;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     {
         inputActions = new XRIDefaultInputActions();
         simulatorControls = new XRDeviceSimulatorControls();
-        activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
+        SpawnFireExtinguishers();
     }
 
     private void OnEnable()
@@ -27,29 +28,38 @@ public class GameManager : MonoBehaviour
         simulatorControls.InputControls.PrimaryButton.performed += RestartGame;
     }
 
+    private void SpawnFireExtinguishers()
+    {
+        foreach (var spawnPoint in fireExtinguisherSpawnPoints)
+        {
+            Instantiate(fireExtinguisher, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
     private void RestartGame(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            SpawnFireExtinguisher();
-            RestartFire();
+            // SpawnFireExtinguisher();
+            // RestartFire();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    private void SpawnFireExtinguisher()
-    {
-        if (activeFireExtinguisher != null)
-        {
-            Destroy(activeFireExtinguisher);
-        }
-        activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
-    }
+    // private void SpawnFireExtinguisher()
+    // {
+    //     if (activeFireExtinguisher != null)
+    //     {
+    //         Destroy(activeFireExtinguisher);
+    //     }
+    //     activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
+    // }
 
-    private void RestartFire()
-    {
-        foreach (var fireController in fireControllers)
-        {
-            fireController.Restart();
-        }
-    }
+    // private void RestartFire()
+    // {
+    //     foreach (var fireController in fireControllers)
+    //     {
+    //         fireController.Restart();
+    //     }
+    // }
 }

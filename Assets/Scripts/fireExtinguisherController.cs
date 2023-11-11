@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class fireExtinguisherController : MonoBehaviour
 {
@@ -11,15 +12,20 @@ public class fireExtinguisherController : MonoBehaviour
   [SerializeField] private Transform nozzlePositionHolder;
   [SerializeField] private AudioSource nozzleAudioSource;
   [SerializeField] private AudioSource buttonAudioSource;
+  [SerializeField] private ParentConstraint boltParentConstraint;
+  [SerializeField] private BoxCollider boltCollider;
   private float amountExtinguishedPerSecond = 10f;
-  private Vector3 initialNozzleOffset;
-  private Quaternion initialNozzleRotation;
   private float extinguishingTimeLeft = 18;
   private bool isExtinguishing = false;
+  private bool boltRemoved = false;
 
   public void Fire()
   {
     buttonAudioSource.Play();
+    if (!boltRemoved)
+    {
+      return;
+    }
     if (extinguishingTimeLeft <= 0)
     {
       return;
@@ -46,7 +52,7 @@ public class fireExtinguisherController : MonoBehaviour
         Stop();
       }
     }
-    if (ps.isPlaying && Physics.Raycast(riffle.position, riffle.forward, out RaycastHit hit, 3) && hit.transform.CompareTag("Fire"))
+    if (isExtinguishing && Physics.Raycast(riffle.position, riffle.forward, out RaycastHit hit, 3) && hit.transform.CompareTag("Fire"))
     {
       hit.transform.GetComponent<FireController>().TryExtinguish(0.1f * Time.deltaTime * amountExtinguishedPerSecond);
     }
@@ -66,5 +72,16 @@ public class fireExtinguisherController : MonoBehaviour
     nozzleRigidbody.transform.rotation = nozzlePositionHolder.rotation;
     nozzleRigidbody.isKinematic = false;
     nozzleJoint.connectedBody = rb;
+  }
+
+  public void DetachBolt()
+  {
+    boltParentConstraint.constraintActive = false;
+    boltRemoved = true;
+  }
+
+  public void ReleaseBolt()
+  {
+    boltCollider.isTrigger = false;
   }
 }

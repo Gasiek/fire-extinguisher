@@ -51,5 +51,6 @@
     "temp/": true,
     "Temp/": true
   },
-  "dotnet.defaultSolution": "fire-extinguisher-simulator.sln"
+  "dotnet.defaultSolution": "fire-extinguisher-simulator.sln",
+  "dotnet.preferCSharpExtension": true
 }
