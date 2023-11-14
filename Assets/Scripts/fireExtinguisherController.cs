@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class fireExtinguisherController : MonoBehaviour
   [SerializeField] private AudioSource buttonAudioSource;
   [SerializeField] private ParentConstraint boltParentConstraint;
   [SerializeField] private BoxCollider boltCollider;
+  [SerializeField] private ReportManager reportManager;
   private float amountExtinguishedPerSecond = 10f;
   private float extinguishingTimeLeft = 18;
   private bool isExtinguishing = false;
@@ -47,8 +49,9 @@ public class fireExtinguisherController : MonoBehaviour
     if (isExtinguishing)
     {
       extinguishingTimeLeft -= Time.deltaTime;
-      if (extinguishingTimeLeft <= 0)
+      if (extinguishingTimeLeft < 0)
       {
+        reportManager.OnFireExtinguisherFinished();
         Stop();
       }
     }

@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fireExtinguisher;
     [SerializeField] private Transform[] fireExtinguisherSpawnPoints;
     [SerializeField] private FireController[] fireControllers;
-    private GameObject activeFireExtinguisher;
     private XRIDefaultInputActions inputActions;
     private XRDeviceSimulatorControls simulatorControls;
+    private int numberOfFiresExtinguished = 0;
     void Awake()
     {
         inputActions = new XRIDefaultInputActions();
@@ -46,20 +46,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // private void SpawnFireExtinguisher()
-    // {
-    //     if (activeFireExtinguisher != null)
-    //     {
-    //         Destroy(activeFireExtinguisher);
-    //     }
-    //     activeFireExtinguisher = Instantiate(fireExtinguisher, fireExtinguisherSpawnPoint.position, fireExtinguisherSpawnPoint.rotation);
-    // }
+    private void OnFireFinished()
+    {
 
-    // private void RestartFire()
-    // {
-    //     foreach (var fireController in fireControllers)
-    //     {
-    //         fireController.Restart();
-    //     }
-    // }
+    }
 }
