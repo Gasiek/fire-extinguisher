@@ -1,90 +1,143 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class fireExtinguisherController : MonoBehaviour
+public class FireExtinguisherController : MonoBehaviour, IExtinguisher
 {
-  [SerializeField] private ParticleSystem ps;
-  [SerializeField] private Transform riffle;
-  [SerializeField] private Rigidbody nozzleRigidbody;
-  [SerializeField] private FixedJoint nozzleJoint;
-  [SerializeField] private Transform nozzlePositionHolder;
-  [SerializeField] private AudioSource nozzleAudioSource;
-  [SerializeField] private AudioSource buttonAudioSource;
-  [SerializeField] private ParentConstraint boltParentConstraint;
-  [SerializeField] private BoxCollider boltCollider;
-  [SerializeField] private ReportManager reportManager;
-  private float amountExtinguishedPerSecond = 10f;
-  private float extinguishingTimeLeft = 18;
-  private bool isExtinguishing = false;
-  private bool boltRemoved = false;
+    [Header("VFX & Audio")]
+    public ParticleSystem extinguishVFX;
+    public AudioSource nozzleAudioSource;
+    public AudioSource buttonAudioSource;
 
-  public void Fire()
-  {
-    buttonAudioSource.Play();
-    if (!boltRemoved)
+    [Header("Nozzle Setup")]
+    public Transform rayOrigin;
+    public Rigidbody nozzleRigidbody;
+    public FixedJoint nozzleJoint;
+    public Transform nozzlePositionHolder;
+
+    [Header("Bolt Setup")]
+    public ParentConstraint boltParentConstraint;
+    public BoxCollider boltCollider;
+
+    [Header("Settings")]
+    public float amountExtinguishedPerSecond = 10f;
+    public float extinguishingDuration = 18f;
+
+
+    private ExtinguisherState _currentState;
+    public float ExtinguishingTime { get; private set; }
+    public bool IsBoltRemoved { get; private set; }
+    public DateTime PickupTime { get; private set; }
+
+    
+    private void Awake()
     {
-      return;
+        ExtinguishingTime = extinguishingDuration;
+        ChangeState(new IdleState(this));
     }
-    if (extinguishingTimeLeft <= 0)
+
+    private void Update()
     {
-      return;
+        _currentState?.Update();
+
+        if (_currentState is ActivatedState)
+        {
+            ExtinguishingTime -= Time.deltaTime;
+            HandleExtinguishing();
+        }
     }
-    isExtinguishing = true;
-    nozzleAudioSource.Play();
-    ps.Play();
-  }
 
-  public void Stop()
-  {
-    isExtinguishing = false;
-    nozzleAudioSource.Stop();
-    ps.Stop();
-  }
-
-  private void Update()
-  {
-    if (isExtinguishing)
+    public void ChangeState(ExtinguisherState newState)
     {
-      extinguishingTimeLeft -= Time.deltaTime;
-      if (extinguishingTimeLeft < 0)
-      {
-        reportManager.OnFireExtinguisherFinished();
-        Stop();
-      }
+        _currentState?.Exit();
+        _currentState = newState;
+        _currentState.Enter();
     }
-    if (isExtinguishing && Physics.Raycast(riffle.position, riffle.forward, out RaycastHit hit, 3) && hit.transform.CompareTag("Fire"))
+
+    public void PickUp()
     {
-      hit.transform.GetComponent<FireController>().TryExtinguish(0.1f * Time.deltaTime * amountExtinguishedPerSecond);
+        if (_currentState is IdleState)
+        {
+            PickupTime = DateTime.Now;
+            ChangeState(new PickedUpState(this));
+        }
     }
-  }
 
-  public void DetachNozzle()
-  {
-    nozzleJoint.connectedBody = null;
-  }
+    public void RemoveBolt()
+    {
+        boltParentConstraint.constraintActive = false;
+        if (!IsBoltRemoved)
+        {
+            IsBoltRemoved = true;
+            EventAggregator.Instance.PublishExtinguisherStarted();
+        }
+        if (_currentState is PickedUpState)
+        {
+            ChangeState(new ReadyState(this));
+        }
+    }
+    
+    public void StartExtinguishing()
+    {
+        nozzleAudioSource.Play();
+        extinguishVFX.Play();
+    }
 
-  public void AttachNozzle(Rigidbody rb)
-  {
-    nozzleRigidbody.velocity = Vector3.zero;
-    nozzleRigidbody.angularVelocity = Vector3.zero;
-    nozzleRigidbody.isKinematic = true;
-    nozzleRigidbody.transform.position = nozzlePositionHolder.position;
-    nozzleRigidbody.transform.rotation = nozzlePositionHolder.rotation;
-    nozzleRigidbody.isKinematic = false;
-    nozzleJoint.connectedBody = rb;
-  }
+    public void StopExtinguishing()
+    {
+        nozzleAudioSource.Stop();
+        extinguishVFX.Stop();
+    }
 
-  public void DetachBolt()
-  {
-    boltParentConstraint.constraintActive = false;
-    boltRemoved = true;
-  }
+    public void Activate()
+    {
+        if (!IsBoltRemoved)
+        {
+            buttonAudioSource.Play();
+            return;
+        }
 
-  public void ReleaseBolt()
-  {
-    boltCollider.isTrigger = false;
-  }
+        if (!(_currentState is ActivatedState))
+        {
+            ChangeState(new ActivatedState(this));
+        }
+    }
+
+    public void Deactivate()
+    {
+        if (_currentState is ActivatedState)
+        {
+            ChangeState(new ReadyState(this));
+        }
+    }
+    
+    private void HandleExtinguishing()
+    {
+        if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out RaycastHit hit, 3f))
+        {
+            if (hit.transform.CompareTag("Fire"))
+            {
+                if (hit.transform.TryGetComponent<FireController>(out var fire))
+                {
+                    fire.ApplyExtinguisherEffect(0.1f * Time.deltaTime * amountExtinguishedPerSecond);
+                }
+            }
+        }
+    }
+
+    public void DetachNozzle()
+    {
+        nozzleJoint.connectedBody = null;
+    }
+
+    public void AttachNozzle(Rigidbody rb)
+    {
+        nozzleRigidbody.velocity = Vector3.zero;
+        nozzleRigidbody.angularVelocity = Vector3.zero;
+        nozzleRigidbody.isKinematic = true;
+        nozzleRigidbody.transform.position = nozzlePositionHolder.position;
+        nozzleRigidbody.transform.rotation = nozzlePositionHolder.rotation;
+        nozzleRigidbody.isKinematic = false;
+        nozzleJoint.connectedBody = rb;
+    }
 }

@@ -1,79 +1,83 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FireController : MonoBehaviour
+public class FireController : MonoBehaviour, IFire
 {
-  [SerializeField] ParticleSystem[] fireParticleSystems = new ParticleSystem[0];
-  [SerializeField] AudioSource audioSource;
-  private float[] startIntensities = new float[0];
-  private float currentIntensity = 1.0f;
-  private float timeLastWatered = 0;
-  private float regenerationDelay = 2.5f;
-  private float regenerationRate = 0.1f;
-  private float initialVolume;
-  private bool isLit = true;
-  private void Start()
-  {
-    initialVolume = audioSource.volume;
-    startIntensities = new float[fireParticleSystems.Length];
-    for (int i = 0; i < fireParticleSystems.Length; i++)
-    {
-      startIntensities[i] = fireParticleSystems[i].emission.rateOverTime.constant;
-    }
-  }
+    [SerializeField] private ParticleSystem[] fireParticleSystems;
+    [SerializeField] private float[] fireStartIntensities;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private FireSettings fireSettings;
 
-  private void Update()
-  {
-    if (isLit && currentIntensity < 1.0f && Time.time - timeLastWatered >= regenerationDelay)
-    {
-      currentIntensity += regenerationRate * Time.deltaTime;
-      ChangeIntensity();
-    }
-  }
+    private float _currentIntensity = 1.0f;
+    private float _timeLastWatered;
+    private bool _isLit = true;
 
-  public void TryExtinguish(float amount)
-  {
-    timeLastWatered = Time.time;
-    ChangeIntensity();
-    if (currentIntensity >= 0)
+    private void Start()
     {
-      currentIntensity -= amount;
+        fireStartIntensities = new float[fireParticleSystems.Length];
+        for (int i = 0; i < fireParticleSystems.Length; i++)
+        {
+            fireStartIntensities[i] = fireParticleSystems[i].emission.rateOverTime.constant;
+        }
+        audioSource.volume = fireSettings.initialVolume;
     }
-    if (currentIntensity <= 0)
-    {
-      StopFire();
-      isLit = false;
-    }
-  }
 
-  private void ChangeIntensity()
-  {
-    audioSource.volume = initialVolume * currentIntensity;
-    for (int i = 0; i < fireParticleSystems.Length; i++)
+    private void Update()
     {
-      var emission = fireParticleSystems[i].emission;
-      emission.rateOverTime = currentIntensity * startIntensities[i];
+        if (_isLit && _currentIntensity < 1.0f && (Time.time - _timeLastWatered) >= fireSettings.regenerationDelay)
+        {
+            _currentIntensity += fireSettings.regenerationRate * Time.deltaTime;
+            UpdateFireAppearance();
+        }
     }
-  }
 
-  private void StopFire()
-  {
-    audioSource.Stop();
-    for (int i = 0; i < fireParticleSystems.Length; i++)
+    public void ApplyExtinguisherEffect(float amount)
     {
-      fireParticleSystems[i].Stop();
+        _timeLastWatered = Time.time;
+        _currentIntensity -= amount;
+        if (_currentIntensity <= 0 && _isLit)
+        {
+            ExtinguishFire();
+        }
+        UpdateFireAppearance();
     }
-  }
 
-  public void Restart()
-  {
-    audioSource.Play();
-    currentIntensity = 1.0f;
-    for (int i = 0; i < fireParticleSystems.Length; i++)
+    private void UpdateFireAppearance()
     {
-      fireParticleSystems[i].Play();
+        audioSource.volume = fireSettings.initialVolume * _currentIntensity;
+        for (int i = 0; i < fireParticleSystems.Length; i++)
+        {
+            var emission = fireParticleSystems[i].emission;
+            emission.rateOverTime = _currentIntensity * fireStartIntensities[i];
+        }
     }
-    isLit = true;
-  }
+
+    private void ExtinguishFire()
+    {
+        audioSource.Stop();
+        foreach (var ps in fireParticleSystems)
+        {
+            ps.Stop();
+        }
+        _isLit = false;
+        EventAggregator.Instance.PublishFireExtinguished();
+    }
+
+    public void Restart()
+    {
+        audioSource.Play();
+        _currentIntensity = 1.0f;
+        foreach (var ps in fireParticleSystems)
+        {
+            ps.Play();
+        }
+        _isLit = true;
+    }
+
+    public void TryExtinguish(float amount)
+    {
+        if (_isLit)
+        {
+            ApplyExtinguisherEffect(amount);
+        }
+    }
 }

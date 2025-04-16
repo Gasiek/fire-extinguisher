@@ -1,53 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public CameraController cameraController;
-    [SerializeField] private GameObject fireExtinguisher;
-    [SerializeField] private Transform[] fireExtinguisherSpawnPoints;
     [SerializeField] private FireController[] fireControllers;
-    private XRIDefaultInputActions inputActions;
-    private XRDeviceSimulatorControls simulatorControls;
-    private int numberOfFiresExtinguished = 0;
-    void Awake()
+    [SerializeField] private FireExtinguisherController[] fireExtinguishers;
+    [SerializeField] private ReportManager reportManager;
+    [SerializeField] private InputManager inputManager;
+    [SerializeField] private SpawnManager spawnManager;
+
+    private int _firesExtinguishedCount;
+
+    private void Awake()
     {
-        inputActions = new XRIDefaultInputActions();
-        simulatorControls = new XRDeviceSimulatorControls();
-        SpawnFireExtinguishers();
+        spawnManager.SpawnFireExtinguishers();
     }
 
     private void OnEnable()
     {
-        simulatorControls.InputControls.Enable();
-        inputActions.XRILeftHandInteraction.Enable();
-        inputActions.XRILeftHandInteraction.XButtonPress.performed += RestartGame;
-        simulatorControls.InputControls.PrimaryButton.performed += RestartGame;
+        EventAggregator.Instance.FireExtinguished += OnFireExtinguished;
+        inputManager.OnRestartRequested += RestartGame;
     }
 
-    private void SpawnFireExtinguishers()
+    private void OnDisable()
     {
-        foreach (var spawnPoint in fireExtinguisherSpawnPoints)
+        EventAggregator.Instance.FireExtinguished -= OnFireExtinguished;
+        inputManager.OnRestartRequested -= RestartGame;
+    }
+
+    private void OnFireExtinguished()
+    {
+        _firesExtinguishedCount++;
+        if (_firesExtinguishedCount >= fireControllers.Length)
         {
-            Instantiate(fireExtinguisher, spawnPoint.position, spawnPoint.rotation);
+            reportManager.GenerateReport();
         }
     }
 
-    private void RestartGame(InputAction.CallbackContext context)
+    public void RestartGame()
     {
-        if (context.performed)
-        {
-            // SpawnFireExtinguisher();
-            // RestartFire();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
-    private void OnFireFinished()
-    {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

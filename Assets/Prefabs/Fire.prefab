@@ -24159,6 +24159,7 @@ MonoBehaviour:
   - {fileID: 4573452496387959993}
   - {fileID: 4573536357318273581}
   audioSource: {fileID: 2180106755809388442}
+  fireSettings: {fileID: 11400000, guid: 7e212466b6bb6f94e92c332757ccbabb, type: 2}
 --- !u!82 &2180106755809388442
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24215,7 +24216,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

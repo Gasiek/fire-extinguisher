@@ -1,36 +1,67 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ReportManager : MonoBehaviour
 {
     public GameObject reportPanel;
-    public TMPro.TextMeshProUGUI timeUsedText;
-    public TMPro.TextMeshProUGUI numberOfExtinguishersFinishedText;
-    private int numberOfExtinguishersUsed;
-    private DateTime startTime;
+    public TextMeshProUGUI timeUsedToExtinguishText;
+    public TextMeshProUGUI timeUsedToActivateExtinguisherText;
+    public TextMeshProUGUI timeUsedToFindExtinguisherText;
+    public TextMeshProUGUI numberOfExtinguishersFinishedText;
 
+    private float _timeUsedToActivateExtinguisher;
+    private float _timeUsedToFindExtinguisher;
+    private int _numberOfExtinguishersUsed = 0;
+    private float _gameStartTime;
+
+    private void OnEnable()
+    {
+        EventAggregator.Instance.ExtinguisherPickedUp += OnExtinguisherPickedUp;
+        EventAggregator.Instance.ExtinguisherActivated += OnExtinguisherActivated;
+        EventAggregator.Instance.ExtinguisherStarted += OnExtinguisherStarted;
+    }
+
+    private void OnDisable()
+    {
+        EventAggregator.Instance.ExtinguisherPickedUp -= OnExtinguisherPickedUp;
+        EventAggregator.Instance.ExtinguisherActivated -= OnExtinguisherActivated;
+        EventAggregator.Instance.ExtinguisherStarted -= OnExtinguisherStarted;
+    }
+    
     private void Start()
     {
-        startTime = DateTime.Now;
+        _gameStartTime = Time.time;
+        reportPanel.SetActive(false);
+    }
+    
+    public void GenerateReport()
+    {
+        numberOfExtinguishersFinishedText.text = _numberOfExtinguishersUsed.ToString();
+        timeUsedToExtinguishText.text = (Time.time - _gameStartTime).ToString("F1") + "s";
+        timeUsedToActivateExtinguisherText.text = _timeUsedToActivateExtinguisher.ToString("F1") + "s";
+        timeUsedToFindExtinguisherText.text = _timeUsedToFindExtinguisher.ToString("F1") + "s";
+        reportPanel.SetActive(true);
     }
 
-    private void Update()
+    private void OnExtinguisherStarted()
     {
-        reportPanel.transform.LookAt(Camera.main.transform);
-        reportPanel.transform.Rotate(0, 180, 0);
-        reportPanel.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
+        _numberOfExtinguishersUsed++;
     }
 
-    private void GenerateReport()
+    private void OnExtinguisherActivated(DateTime pickUpTime)
     {
-        timeUsedText.text = (DateTime.Now - startTime).ToString();
-        numberOfExtinguishersFinishedText.text = numberOfExtinguishersUsed.ToString();
+        if (_timeUsedToActivateExtinguisher == 0)
+        {
+            _timeUsedToActivateExtinguisher = (float)(DateTime.Now - pickUpTime).TotalSeconds;
+        }
     }
 
-    public void OnFireExtinguisherFinished()
+    private void OnExtinguisherPickedUp()
     {
-        numberOfExtinguishersUsed++;
+        if (_timeUsedToFindExtinguisher == 0)
+        {
+            _timeUsedToFindExtinguisher = Time.time - _gameStartTime;
+        }
     }
 }
